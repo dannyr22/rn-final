@@ -186,7 +186,9 @@ const Item = ({item, navigation}) => {
               {item.discountAvailable ? (
                 <Text style={styles.textPrimaryVoid}>£{item.price}</Text>
               ) : (
-                <Text style={styles.textPrimary}>£{item.price}</Text>
+                <Text style={styles.textPrimary}>
+                  {item.price ? `£${item.price}` : ''}
+                </Text>
               )}
 
               {item.discountPercent && (
@@ -202,7 +204,7 @@ const Item = ({item, navigation}) => {
                   £{item.price - item.discountAmount}
                 </Text>
               )}
-              {item.price === null && <Text style={styles.textFree}>Free</Text>}
+              {item.price === null && <Text style={styles.textFree}>FREE</Text>}
             </View>
             <Text style={styles.textSecondary}>{item.description}</Text>
           </View>
@@ -232,6 +234,7 @@ const Product = ({navigation}) => {
                 data={section.data}
                 renderItem={renderItem}
                 showsHorizontalScrollIndicator={false}
+                keyExtractor={item => item.id}
               />
             </>
           )}
@@ -301,7 +304,7 @@ const styles = StyleSheet.create({
   sectionHeader: {
     fontWeight: '800',
     fontSize: 24,
-    color: '#555',
+    color: '#4863A0',
     marginTop: 20,
     marginBottom: 16,
   },

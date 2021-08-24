@@ -28,7 +28,9 @@ const ProductDetails = ({route, navigation}) => {
                 {product.discountAvailable ? (
                   <Text style={styles.textPrimaryVoid}>£{product.price}</Text>
                 ) : (
-                  <Text style={styles.textPrimary}>£{product.price}</Text>
+                  <Text style={styles.textPrimary}>
+                    {product.price ? `£${product.price}` : ''}
+                  </Text>
                 )}
 
                 {product.discountPercent && (
