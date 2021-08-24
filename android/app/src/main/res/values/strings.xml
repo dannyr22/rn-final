@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">rnFinal</string>
+    	<key>SERVICE_KEY</key>
+	<string>IAmAKey</string>
 </resources>
