@@ -31,7 +31,7 @@ const Home = () => {
     >
       <HomeTabs.Screen name="Info" component={Info} />
       <HomeTabs.Screen name="Market" component={MarketStackScreen} />
-      <HomeTabs.Screen name="Key" component={Key} />
+      {/* <HomeTabs.Screen name="Key" component={Key} /> */}
     </HomeTabs.Navigator>
   );
 };

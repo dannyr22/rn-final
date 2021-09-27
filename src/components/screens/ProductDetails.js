@@ -33,7 +33,7 @@ const ProductDetails = ({route, navigation}) => {
                   </Text>
                 )}
 
-                {product.discountPercent && (
+                {!!product.discountPercent && (
                   <Text style={styles.textPrimary}>
                     £{''}
                     {parseFloat(
@@ -66,6 +66,7 @@ export default ProductDetails;
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    width: '100%',
   },
   product: {
     flex: 1,

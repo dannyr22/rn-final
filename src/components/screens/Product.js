@@ -68,7 +68,7 @@ const SECTIONS = [
         title: 'Dino Bear',
         price: 5.99,
         discountAvailable: true,
-        discountPercent: 0.5,
+        discountPercent: 0,
         imgSource: require('rnFinal/assets/images/deno-dinosaur.jpg'),
         description: 'Amazing Dino teddy bear for puppies',
         fullDescription:
@@ -151,26 +151,26 @@ const SECTIONS = [
 
 const Item = ({item, navigation}) => {
   const [itemClicked, setItemClicked] = useState(true);
-  // const animatedButtonScale = new Animated.Value(1);
+  const animatedButtonScale = new Animated.Value(0);
   const onPressIn = () => {
-    // Animated.spring(animatedButtonScale, {
-    //   toValue: 1.5,
-    //   useNativeDriver: true,
-    // }).start();
-    setItemClicked(prev => !prev);
+    Animated.spring(animatedButtonScale, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
+    // setItemClicked(prev => !prev);
   };
   const onPressOut = () => {
-    // Animated.spring(animatedButtonScale, {
-    //   toValue: 1,
-    //   useNativeDriver: true,
-    // }).start();
-    setItemClicked(prev => !prev);
+    Animated.spring(animatedButtonScale, {
+      toValue: 0,
+      useNativeDriver: true,
+    }).start();
+    // setItemClicked(prev => !prev);
   };
-  //   const animatedScaleStyle = {
-  //     transform: [{scale: animatedButtonScale}],
-  //   };
+  // const animatedScaleStyle = {
+  //   transform: [{scale: animatedButtonScale}],
+  // };
   return (
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={() => navigation.push('ProductDetails', {product: item})}
       onPressIn={onPressIn}
       onPressOut={onPressOut}>
@@ -191,7 +191,7 @@ const Item = ({item, navigation}) => {
                 </Text>
               )}
 
-              {item.discountPercent && (
+              {!!item.discountPercent && (
                 <Text style={styles.textPrimary}>
                   £{' '}
                   {parseFloat(
@@ -213,7 +213,7 @@ const Item = ({item, navigation}) => {
           </View>
         </View>
       </Animated.View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 };
 
@@ -223,7 +223,7 @@ const Product = ({navigation}) => {
     <View style={styles.container}>
       <SafeAreaView>
         <SectionList
-          contentContainerStyle={{paddingHorizontal: 10}}
+          // contentContainerStyle={{paddingHorizontal: 10}}
           stickySectionHeadersEnabled={false}
           sections={SECTIONS}
           renderSectionHeader={({section}) => (
@@ -254,9 +254,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
     flexDirection: 'column',
   },
-  itemClicked: {
-    flex: 1,
-  },
+  // itemClicked: {
+  //   flex: 0.5,
+  // },
   itemImage: {
     height: 250,
     borderTopLeftRadius: 10,
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     resizeMode: 'cover',
     backgroundColor: 'rgba(52, 52, 52, 0.8)',
-    padding: 8,
+    // padding: 8,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
   },
